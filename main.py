@@ -16,13 +16,46 @@ def my_lines(ax, pos, *args, **kwargs):
 def split(word):
     return [int(char) for char in word]
 
+def plot(bity, napiecia, niski, wysoki):
+    dlugosc = len(bity)
+    t = dlugosc/len(napiecia) * np.arange(len(napiecia))
+    my_lines('x', range(dlugosc), color='.5', linewidth=1, linestyle='--')
+    my_lines('y', [niski, 0, wysoki], color='.5', linewidth=1, linestyle='--')
+    plt.step(t, napiecia, 'r', linewidth=2, where='post')
+    plt.ylim([niski-1, wysoki+1])
+    plt.xlim(0, dlugosc)
 
-def plot_manchester(ciag):
+    for tbit, bit in enumerate(bity):
+        plt.text(tbit + 0.5, wysoki + 0.5, str(bit))
+
+    plt.show()
+
+
+def plot_NRZ(ciag):
+    bity = split(ciag)
+
     niski = float(input('Podaj poziom niski: '))
     wysoki = float(input('Podaj poziom wysoki: '))
 
+    NRZ = []
+    for bit in bity:
+        if int(bit) == 1:
+            NRZ.append(wysoki)
+        else:
+            NRZ.append(niski)
+
+    wart_srednia = sum(NRZ)/len(NRZ)
+    print('Srednia wartosc sygnalu:', wart_srednia)
+    plot(bity, NRZ, niski, wysoki)
+    
+
+def plot_manchester(ciag):
+    bity = split(ciag)
     data = np.repeat(bity, 2)
     clock = 1 - np.arange(len(data)) % 2
+
+    niski = float(input('Podaj poziom niski: '))
+    wysoki = float(input('Podaj poziom wysoki: '))
 
     logical = np.invert(np.logical_xor(clock, data))
     manchester = []
@@ -34,23 +67,10 @@ def plot_manchester(ciag):
 
     wart_srednia = sum(manchester) / 2
     print('Srednia wartosc sygnalu:', wart_srednia)
-
-    t = 0.5 * np.arange(len(data))
-
-    my_lines('x', range(len(ciag)), color='.5', linewidth=1, linestyle='-')
-    my_lines('y', [niski, 0, wysoki], color='.5', linewidth=1, linestyle='-')
-    plt.step(t, manchester, 'r', linewidth=2, where='post')
-    plt.ylim([niski-1, wysoki+1])
-    plt.xlim(0, len(ciag))
-
-    for tbit, bit in enumerate(bity):
-        plt.text(tbit + 0.5, wysoki + 0.5, str(bit))
-
-    plt.show()
+    plot(bity, manchester, niski, wysoki)
 
 
 ciag = input('Podaj ciag bitow: ').strip().replace(' ', '')
-bity = split(ciag)
 
 to_exit = False
 
@@ -67,7 +87,7 @@ while not to_exit:
 
     wybor = input()
     if wybor == '1':
-        pass
+        plot_NRZ(ciag)
     elif wybor == '2':
         pass
     elif wybor == '3':
