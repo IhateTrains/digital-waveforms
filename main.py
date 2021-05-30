@@ -1,4 +1,5 @@
-from NKB import plot_NRZ
+from NKB import plot_NRZ, plot_RZ
+from AMI import plot_AMI
 from manchester import plot_manchester
 
 
@@ -21,9 +22,9 @@ while not to_exit:
     if wybor == '1':
         plot_NRZ(ciag)
     elif wybor == '2':
-        pass
+        plot_RZ(ciag)
     elif wybor == '3':
-        pass
+        plot_AMI(ciag)
     elif wybor == '4':
         plot_manchester(ciag)
     elif wybor == '5':
