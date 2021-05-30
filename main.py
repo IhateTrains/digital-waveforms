@@ -1,5 +1,6 @@
 from NKB import plot_NRZ, plot_RZ
 from AMI import plot_AMI
+from encoding_2B1Q import plot_2B1Q
 from manchester import plot_manchester
 
 
@@ -30,7 +31,7 @@ while not to_exit:
     elif wybor == '5':
         pass
     elif wybor == '6':
-        pass
+        plot_2B1Q(ciag)
     elif wybor == '0':
         to_exit = True
     else:
