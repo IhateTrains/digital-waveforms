@@ -2,7 +2,7 @@ from plot import plot, plot1
 from helpers import split
 
 
-def plot_AMI(ciag):
+def plot_2B1Q(ciag):
 
     bity = ciag
     level = float(input('Podaj poziom (Jeżeli nie wiesz/nie masz podane wpisz 1): '))
@@ -38,12 +38,12 @@ def plot_AMI(ciag):
 
     wart_srednia = sum(napiecia)/len(napiecia)
     napiecia.append(ostatni)
+    print('Srednia wartosc sygnalu:', wart_srednia)
     plot1(bity,napiecia,level)
 
 
-    print('Srednia wartosc sygnalu:', wart_srednia)
     #print("Napiecia: ",napiecia)
     #print("Dlugosc: ",len(napiecia))
     #print("Suma: ",sum(napiecia))
 
-plot_AMI('101100001101')
+#plot_2B1Q('101100001101')

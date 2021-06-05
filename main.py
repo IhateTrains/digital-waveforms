@@ -1,6 +1,6 @@
 from NKB import plot_NRZ, plot_RZ
 from AMI import plot_AMI
-from encoding_2B1Q import plot_2B1Q
+from NEW2B1Q import plot_2B1Q
 from manchester import plot_manchester
 
 
