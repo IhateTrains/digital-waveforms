@@ -38,8 +38,10 @@ def plot_2B1Q(ciag):
 
 
     napiecia.append(ostatni)
-    plot1(bity,napiecia,level)
-
+    
     wart_srednia = sum(napiecia)/len(napiecia)
     print('Srednia wartosc sygnalu:', wart_srednia)
+
+    plot1(bity,napiecia,level)
+
 
