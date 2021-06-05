@@ -1,0 +1,3 @@
+[submodule "manchester_coding"]
+	path = manchester_coding
+	url = https://github.com/ian-llewellyn/manchester-coding

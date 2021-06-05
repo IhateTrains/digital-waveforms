@@ -27,9 +27,9 @@ while not to_exit:
     elif wybor == '3':
         plot_AMI(ciag)
     elif wybor == '4':
-        plot_manchester(ciag)
+        plot_manchester(ciag, differential=False)
     elif wybor == '5':
-        pass
+        plot_manchester(ciag, differential=True)
     elif wybor == '6':
         plot_2B1Q(ciag)
     elif wybor == '0':

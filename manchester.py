@@ -1,11 +1,12 @@
 from plot import plot
-import numpy as np
-from helpers import split, srednia_wartosc_sygnalu
+from helpers import split, split_into_chars, srednia_wartosc_sygnalu
+from manchester_coding.manchester import Manchester
 
-def manchester(bity, niski, wysoki):
-    data = np.repeat(bity, 2)
-    clock = 1 - np.arange(len(data)) % 2
-    logical = np.invert(np.logical_xor(clock, data))
+
+
+def manchester(bity, niski, wysoki, differential=False):
+    logical = split(Manchester(differential).encode(bity))
+    print(logical)
     output = []
     for i in range(len(logical)):
         if logical[i]:
@@ -15,11 +16,11 @@ def manchester(bity, niski, wysoki):
     return output
 
 
-def plot_manchester(ciag):    
-    bity = split(ciag)
+def plot_manchester(ciag, differential=False):    
+    bity = split_into_chars(ciag)
     niski = float(input('Podaj poziom niski: '))
     wysoki = float(input('Podaj poziom wysoki: '))
-    output = manchester(bity, niski, wysoki)
+    output = manchester(bity, niski, wysoki, differential)
 
     wart_srednia = srednia_wartosc_sygnalu(output)
     print('Srednia wartosc sygnalu:', wart_srednia)
